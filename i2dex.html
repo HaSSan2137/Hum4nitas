@@ -125,13 +125,14 @@
         <p><strong>Połączenie:</strong> <span class="highlight" id="connection">Pobieranie...</span></p>
         <p><strong>Operator:</strong> <span class="highlight" id="operator">Pobieranie...</span></p>
         <p><strong>Lokalizacja:</strong> <span class="highlight" id="location">Pobieranie...</span></p>
+        <p><strong>Współrzędne geograficzne:</strong> <span class="highlight" id="coordinates">Pobieranie...</span></p>
         <p><strong>Adres IP:</strong> <span class="highlight" id="ip">Pobieranie...</span></p>
         <p><strong>Data i godzina:</strong> <span class="highlight" id="datetime">Pobieranie...</span></p>
         <div>
             <p>Chroń swoje dane:</p>
             <ul>
                 <li>"Twoje bezpieczeństwo zaczyna się od świadomości."</li>
-                         </ul>
+            </ul>
         </div>
         
         <!-- Pasek postępu -->
@@ -139,6 +140,9 @@
         <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
+
+        <!-- Dodanie odstępu pomiędzy paskiem ładowania a tekstem -->
+        <div style="height: 20px;"></div>
 
         <div class="glitch">Wczytuję dane...</div>
 
@@ -181,15 +185,10 @@
             document.getElementById('datetime').innerText = now.toLocaleString('pl-PL');
 
             // Lokalizacja użytkownika
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { latitude, longitude } = position.coords;
-                    document.getElementById('location').innerText = `Szerokość: ${latitude}, Długość: ${longitude}`;
-                },
-                () => {
-                    document.getElementById('location').innerText = "Wykryto!";
-                }
-            );
+            const locationText = "ul. Kilińskiego 43, 41-200 Sosnowiec, Akademia Humanitas";
+            const coords = { lat: 50.28178973304994, lon: 19.12864158217651 }; // Przykładowe współrzędne geograficzne
+            document.getElementById('location').innerText = locationText;
+            document.getElementById('coordinates').innerText = `${coords.lat}, ${coords.lon}`;
 
             // Pobieranie adresu IP
             fetch('https://api64.ipify.org?format=json')
