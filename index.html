@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skanuj, nie zagaduj.</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            overflow-y: auto;
+        }
+        .container {
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #ff0000;
+            font-size: 36px;
+            margin-bottom: 20px;
+            animation: neon-glow 1.5s ease-in-out infinite alternate;
+        }
+        .highlight {
+            color: #00ff00;
+            font-weight: bold;
+        }
+        .glitch {
+            font-size: 18px;
+            color: #ff0000;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: glitch-animation 1s infinite;
+        }
+
+        /* Animacja mrugającego tekstu */
+        @keyframes glitch-animation {
+            0% { color: #ff0000; text-shadow: 2px 0px 3px rgba(0, 0, 0, 0.5); }
+            50% { color: #ff00ff; text-shadow: -2px 0px 3px rgba(0, 0, 0, 0.5); }
+            100% { color: #ff0000; text-shadow: 2px 0px 3px rgba(0, 0, 0, 0.5); }
+        }
+
+        /* Animacja neonu dla nagłówka */
+        @keyframes neon-glow {
+            0% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000; }
+            50% { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00; }
+            100% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000; }
+        }
+
+        /* Dodanie paska postępu */
+        .progress-container {
+            width: 100%;
+            background-color: #333;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 20px;
+            background-color: #00ff00;
+            border-radius: 10px;
+            animation: loading 20s linear infinite;
+        }
+
+        /* Animacja paska postępu */
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Dostosowanie dla telefonów */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+            p.warning {
+                font-size: 16px;
+            }
+            .highlight {
+                font-size: 16px;
+            }
+            .glitch {
+                font-size: 16px;
+                top: 25%;
+            }
+        }
+
+        /* Link na dole strony */
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: #333;
+            transition: background-color 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .footer-link:hover {
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CZY NAPRAWDĘ MYŚLISZ, ŻE SKANOWANIE LOSOWYCH KODÓW QR JEST BEZPIECZNE?</h1>
+        <p><strong>Typ urządzenia:</strong> <span class="highlight" id="device">Pobieranie...</span></p>
+        <p><strong>Przeglądarka:</strong> <span class="highlight" id="browser">Pobieranie...</span></p>
+        <p><strong>System operacyjny:</strong> <span class="highlight" id="os">Pobieranie...</span></p>
+        <p><strong>Rozdzielczość ekranu:</strong> <span class="highlight" id="resolution">Pobieranie...</span></p>
+        <p><strong>Język systemu:</strong> <span class="highlight" id="language">Pobieranie...</span></p>
+        <p><strong>Numer telefonu:</strong> <span class="highlight" id="phone">Pobieranie...</span></p> 
+        <p><strong>Model telefonu:</strong> <span class="highlight" id="phone-model">Pobieranie...</span></p>
+        <p><strong>Połączenie:</strong> <span class="highlight" id="connection">Pobieranie...</span></p>
+        <p><strong>Operator:</strong> <span class="highlight" id="operator">Pobieranie...</span></p>
+        <p><strong>Lokalizacja:</strong> <span class="highlight" id="location">Pobieranie...</span></p>
+        <p><strong>Adres IP:</strong> <span class="highlight" id="ip">Pobieranie...</span></p>
+        <p><strong>Data i godzina:</strong> <span class="highlight" id="datetime">Pobieranie...</span></p>
+        <div>
+            <p>Chroń swoje dane:</p>
+            <ul>
+                <li>"Twoje bezpieczeństwo zaczyna się od świadomości."</li>
+                <li>"Jeden klik może kosztować fortunę - dbaj o swoje dane."</li>
+                <li>"Nie skanuj, zanim nie zaufasz."</li>
+                <li>"Cyberprzestępcy nigdy nie śpią - bądź o krok przed nimi."</li>
+            </ul>
+        </div>
+        
+        <!-- Pasek postępu -->
+        <p><strong>W trakcie pobierania innych danych...</strong></p>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div class="glitch">Wczytuję dane...</div>
+
+        <!-- Link na dole strony -->
+        <a href="https://www.humanitas.edu.pl/" class="footer-link" target="_blank">Z NAMI JEST BEZPIECZNIE - SPRAWDŹ!</a>
+    </div>
+
+    <script>
+        // Pobieranie danych urządzenia i systemu
+        setTimeout(() => {
+            // Typ urządzenia
+            document.getElementById('device').innerText = navigator.platform || "Wykryto!";
+
+            // Przeglądarka
+            document.getElementById('browser').innerText = navigator.userAgent || "Wykryto!";
+
+            // System operacyjny
+            document.getElementById('os').innerText = navigator.appVersion || "Wykryto!";
+
+            // Rozdzielczość ekranu
+            document.getElementById('resolution').innerText = `${window.screen.width}x${window.screen.height}` || "Wykryto!";
+
+            // Język systemu
+            document.getElementById('language').innerText = navigator.language || "Wykryto!";
+
+            // Połączenie
+            if (navigator.connection) {
+                document.getElementById('connection').innerText = navigator.connection.effectiveType || "Wykryto!";
+            }
+
+            // Fikcyjny numer telefonu i model telefonu
+            document.getElementById('phone').innerText = "Wykryto!";
+            document.getElementById('phone-model').innerText = "Wykryto!";
+
+            // Fikcyjny operator
+            document.getElementById('operator').innerText = "Wykryto!";
+
+            // Pobieranie daty i godziny
+            const now = new Date();
+            document.getElementById('datetime').innerText = now.toLocaleString('pl-PL');
+
+            // Lokalizacja użytkownika
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    document.getElementById('location').innerText = `Szerokość: ${latitude}, Długość: ${longitude}`;
+                },
+                () => {
+                    document.getElementById('location').innerText = "Wykryto!";
+                }
+            );
+
+            // Pobieranie adresu IP
+            fetch('https://api64.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ip').innerText = data.ip || "Wykryto!";
+                })
+                .catch(() => {
+                    document.getElementById('ip').innerText = "Wykryto!";
+                });
+        }, 2000);
+    </script>
+</body>
+</html>
